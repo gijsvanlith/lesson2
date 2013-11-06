@@ -1,0 +1,38 @@
+# Gijs van lith 06-11-2013
+# function that checks if a year is a leapyear 
+  
+is.leap <- function(yr){
+  result <- ifelse(yr%%100!=0, yr%%400==0, yr%%4==0)
+  return(result)
+}
+
+
+# this is the main function
+
+check.leap <- function(year){
+  answer <- NA
+  if(is.numeric(year)){
+    if(year <1582){
+      answer <- is.leap(year)
+            warning("the year is below 1582")
+    }
+    else {
+      answer <- is.leap(year)
+    }
+  }
+  else if(is.character(year)){
+    warning("the input is not a number but a character")
+  }
+  else{
+    stop("the input is not numeric")
+  } 
+  return(answer)
+}  
+
+
+# tests
+check.leap(2000)
+check.leap(1500)
+check.leap(2003)
+check.leap('john')
+    
